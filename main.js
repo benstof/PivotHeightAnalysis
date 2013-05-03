@@ -44,15 +44,15 @@ function updatePivot() {
   clearOverlays();
 
 
-          var image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
+  var image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
 
-          var marker = new google.maps.Marker({
-            map: map,
-            icon:image,
-            draggable:true,
-            position: glob_pos
-          });
-          markersArray.push(marker);
+  var marker = new google.maps.Marker({
+    map: map,
+    icon:image,
+    draggable:true,
+    position: glob_pos
+  });
+  markersArray.push(marker);
 
   google.maps.event.addListener(marker, 'dragend', function() 
   {
@@ -130,28 +130,6 @@ function updatePivot() {
 
 }
 
-/*
-var ActivityObject = Parse.Object.extend("ActivityObject");
-var activityObject = new ActivityObject();
-location_val = 30;
-
-ip_val = document.getElementById('ip_val').value;
-lat_val = origin.Ya;
-lng_val = origin.Za;
-
-activityObject.save({units: units, radius: parseInt(rad), lat: lat_val, lng: lng_val, ip:ip_val}, {
-  success: function(object) {
-          //$(".success").show();
-        },
-        error: function(model, error) {
-          //$(".error").show();
-        }
-      });
-
-
-}
-
-*/
 
 
 
@@ -270,19 +248,21 @@ function updateUnits(){
  units = $("input[name=units]:checked").attr('id');
  document.getElementById('un_val').value = units;
 
-  if(units == 'feet'){
-    $(".units_lbl").html('ft');  
-  } else {
-    $(".units_lbl").html('m');  
-  }
+ if(units == 'feet'){
+  $(".units_lbl").html('ft');  
+} else {
+  $(".units_lbl").html('m');  
+}
 
- updatePivot();
+updatePivot();
 }
 
 function codeAddress() {
 
 
+
   units = $("input[name=units]:checked").attr('id');
+
   document.getElementById('un_val').value = units;
 
   if(units == 'feet'){
@@ -291,50 +271,64 @@ function codeAddress() {
     $(".units_lbl").html('m');  
   }
   
+
   clearOverlays();
+
   elSvc = new google.maps.ElevationService();
 
-  var rad = document.getElementById('radius').value;
+  rad = document.getElementById('radius').value;
   elHigh = -100000;
   elLow = 100000;
 
-      //console.log(address);
+
+
 
   adt = $("input[name=adt]:checked").attr('id');
 
-  if(adt == 'address_rb' || adt == 'current_rb'){
 
-  var address = document.getElementById('address').value;
-  //alert(address);
 
-  if (address == '') {
-    address = current_addr;       
+if(adt == 'address_rb' || adt == 'current_rb'){
+
+
+  address = document.getElementById('address').value;
+
+
+
+  if (adt == 'current_rb') {
+
+    address = current_addr; 
+    console.log('current'); 
+
   } 
 
 
-alert(address);
+  console.log(address);
 
-      geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
 
-          map.setCenter(results[0].geometry.location);
-          glob_pos = results[0].geometry.location; 
+  geocoder.geocode( { 'address': address}, function(results, status) {
 
-alert(address);
+    if (status == google.maps.GeocoderStatus.OK) {
 
+      map.setCenter(results[0].geometry.location);
+      glob_pos = results[0].geometry.location; 
+
+console.log('jjj');
       updatePivot();
-
-      } else {
-         alert('Geocode was not successful for the following reason: ' + status);
-      }
-
-    });
-
+      
 
     } else {
 
-      var lat_val = document.getElementById('lat_address').value;
-      var lng_val = document.getElementById('lng_address').value;
+    //alert('Geocode was not successful for the following reason: ' + status);
+
+   }
+
+  });
+
+
+} else {
+
+  var lat_val = document.getElementById('lat_address').value;
+  var lng_val = document.getElementById('lng_address').value;
 
   //address = '41.072683, -97.372842';
   ltlng = new google.maps.LatLng(lat_val, lng_val);
@@ -344,9 +338,7 @@ alert(address);
 
   updatePivot();
 
-    }
-
-
+}
 
 
 } 
@@ -357,63 +349,77 @@ function updateAdt() {
   adt = $("input[name=adt]:checked").attr('id');
 
   if(adt == 'address_rb'){
-     $("#address").prop('disabled', false);
+   $("#address").prop('disabled', false);
+   $("#lng_address").prop('disabled', true);
+   $("#lat_address").prop('disabled', true);
+
+ }
+
+ if(adt == 'location_rb'){
+   $("#address").prop('disabled', true);
+   $("#lng_address").prop('disabled', false);
+   $("#lat_address").prop('disabled', false);
+ }
+
+
+
+ if(adt == 'current_rb'){
+
+
+   document.getElementById('address').value = '';
+
+
+     $("#address").prop('disabled', true);
      $("#lng_address").prop('disabled', true);
      $("#lat_address").prop('disabled', true);
 
-  }
 
-  if(adt == 'location_rb'){
-     $("#address").prop('disabled', true);
-     $("#lng_address").prop('disabled', false);
-     $("#lat_address").prop('disabled', false);
-  }
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(successo, erroro);
+} else {
+  alert('geolocation not supported');
+}
 
+function successo(position) {
+  //alert(position.coords.latitude + ', ' + position.coords.longitude);
 
+  $("#lat_address").val(position.coords.latitude);
+  $("#lng_address").val(position.coords.longitude);
 
-  if(adt == 'current_rb'){
+  this_lat = position.coords.latitude;
+  this_lng = position.coords.longitude;
 
-
-     document.getElementById('address').value = '';
-     //alert(current_addr)
-
-     $("#address").prop('disabled', true);
-     $("#lng_address").prop('disabled', true);
-     $("#lat_address").prop('disabled', true);
-
-
-
+  current_addr = position.coords.latitude +', '+ position.coords.longitude;
   codeAddress();
+}
+
+function erroro(msg) {
+  alert('error: ' + msg);
+}
 
 
   } // Update current 
-
 
 
 }
 
 function aggree_to_terms() {
 
-
-
-
   $.cookie('disclaimer', 'y');
 
   // Hide disclaimer
   $('#disclaimer_box').hide();
-
 
 }
 
 function initialize() {
 
 
-
-  $('#disclaimer_box').hide();
+  //$('#disclaimer_box').hide();
 
   $("#aggree_btn").click(function() {
    aggree_to_terms();
-  });
+ });
 
 
   var aggree = $.cookie('disclaimer');
@@ -424,82 +430,26 @@ function initialize() {
   }
 
 
-
-
-
-current_addr = '28.542180934818862, -81.6891067430725';
-
-
-  codeAddress();
-
-/*
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(successo, erroro);
-} else {
-  alert('geolocation not supported');
-}
-
-function successo(position) {
-  //alert(position.coords.latitude + ', ' + position.coords.longitude);
-  this_lat = position.coords.latitude;
-  this_lng = position.coords.longitude;
-
-  current_addr = position.coords.latitude +', '+ position.coords.longitude;
-
-
-
-
 geocoder = new google.maps.Geocoder();
+
+this_lat = 28.542180934818862;
+this_lng = -81.6891067430725;
+
   var mapOptions = {
     center: new google.maps.LatLng(this_lat, this_lng),
     zoom: 18,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  map = new google.maps.Map(document.getElementById("map_canvas"),
+
+    map = new google.maps.Map(document.getElementById("map_canvas"),
     mapOptions);
 
 
   codeAddress();
 
-
-
-}
-
-function erroro(msg) {
-  alert('error: ' + msg);
-
-
-geocoder = new google.maps.Geocoder();
-  var mapOptions = {
-    center: new google.maps.LatLng(this_lat, this_lng),
-    zoom: 18,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  map = new google.maps.Map(document.getElementById("map_canvas"),
-    mapOptions);
-
-
-  codeAddress();
-
-
-}
-
-*/
-
-
-
-
-
-
-
-
-
-
 }
 
 
 
 
 
-    
