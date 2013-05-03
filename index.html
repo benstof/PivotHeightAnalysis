@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCUYIZOucrwK5g72kEAlzLWB3ds5gls3jM&sensor=false">
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript">
+    </script>
+    
+    <script type="text/javascript">
+    
+    
+    
+    var map;
+    var elSvc;
+    var markersArray = [];
+    var linesArray = [];
+    var infoArray = [];
+    var path = [];
+    var cityCircle;
+    var glob_pos;
+    var elHigh;
+    var elLow;
+    
+    function clearOverlays() {
+    
+       for (var i = 0; i < markersArray.length; i++ ) {
+          markersArray[i].setMap(null);
+       } 
+       
+       for (var i = 0; i < infoArray.length; i++ ) {
+          infoArray[i].setMap(null);
+       } 
+       
+       for (var i = 0; i < linesArray.length; i++ ) {
+          linesArray[i].setMap(null);
+       } 
+       
+    }
+
+
+function updatePivot() {
+
+    clearOverlays();
+     
+    var rad = document.getElementById('radius').value;   
+      
+    
+    var populationOptions = {
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#FF0000",
+      fillOpacity: 0.35,
+      map: map,
+      center: glob_pos, //results[0].geometry.location, //new google.maps.LatLng(-34.397, 150.644),
+      radius: parseInt(rad)
+    };
+    pivot = new google.maps.Circle(populationOptions);
+    markersArray.push(pivot);
+    
+    var origin = pivot.center;
+    
+    
+    for (var i = 0; i < 36; i++ ) {
+       
+           
+    var endpoint = google.maps.geometry.spherical.computeOffset(pivot.center,pivot.radius,i*10);
+    path.push(endpoint);
+    //console.log(endpoint);
+    
+var radiusLineSettings = {
+clickable: false,
+map: map,
+strokeColor: "#000000",
+strokeWeight: 0.5,
+path: [origin,endpoint]
+};
+
+	var pathRequest = {
+	   'path': [origin,endpoint],
+	   'samples':5
+	}
+	elSvc.getElevationAlongPath(pathRequest, plotElevations);
+	
+//pivotRadiusLine = new google.maps.Polyline(radiusLineSettings);   
+//linesArray.push(pivotRadiusLine); 
+
+}
+
+	/*var pathRequest = {
+	   'path': path,
+	   'samples':36
+	}
+	
+	elSvc.getElevationAlongPath(pathRequest, plotElevations); */
+
+
+    
+/*var infowindow = new google.maps.InfoWindow({
+map: map,
+position: glob_pos,
+content: glob_pos.toString()
+}); 
+
+infoArray.push(infowindow); */
+
+
+}
+
+function plotElevations(results, status){
+
+	//console.log('kjk');
+	if(status == google.maps.ElevationStatus.OK){
+	
+		elevations = results;
+		
+		
+		for (var i = 0; i < results.length; i++ ) {
+		    
+		    //console.log(elevations[i].elevation);
+		    
+		    if(elevations[i].elevation > elHigh) {
+		       elHigh = elevations[i].elevation;
+		    }
+		    
+		    if(elevations[i].elevation < elLow) {
+		       elLow = elevations[i].elevation;
+		    }
+		    
+		}
+		
+	}
+	
+	//console.log('high: ' + elHigh);
+	//console.log('low: ' + elLow);
+	$("#hpoint").html(elHigh);
+	$("#lpoint").html(elLow);
+	
+}
+
+
+function geocodePosition(pos) 
+{
+    glob_pos = pos;
+    elHigh = -100000;
+    elLow = 100000;
+
+document.getElementById('address').value = glob_pos.toString();
+
+
+var rad = document.getElementById('radius').value;
+    geocoder.geocode
+    ({
+        latLng: pos
+    }, 
+        function(results, status) 
+        {
+            if (status == google.maps.GeocoderStatus.OK) 
+            {
+                updatePivot();
+            } 
+            else 
+            {
+                //$("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+            }
+        }
+    );
+}
+
+function codeAddress() {
+    
+    clearOverlays();
+    elSvc = new google.maps.ElevationService();
+    var address = document.getElementById('address').value;
+    var rad = document.getElementById('radius').value;
+    elHigh = -100000;
+    elLow = 100000;
+
+    //console.log(address);
+
+
+geocoder.geocode( { 'address': address}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+
+map.setCenter(results[0].geometry.location);
+var marker = new google.maps.Marker({
+map: map,
+draggable:true,
+position: results[0].geometry.location
+});
+
+glob_pos = results[0].geometry.location; 
+//console.log(glob_pos);
+
+
+document.getElementById('address').value = glob_pos.toString();
+
+google.maps.event.addListener(marker, 'dragend', function() 
+{
+    geocodePosition(marker.getPosition());
+});
+
+updatePivot();
+    
+} else {
+alert('Geocode was not successful for the following reason: ' + status);
+}
+});
+} 
+
+
+
+      function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 18,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+            map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+
+  
+		codeAddress();
+      }
+      
+    </script>
+    
+    
+    
+  </head>
+  <body onload="initialize()">
+  
+
+
+    <div id="map_canvas" style="width:600px; height:600px; margin:5px; float:left;"></div>
+    
+    <div style="width:450px; text-align:center;  border:0px solid #000; padding:5px; margin:5px; float:left; font-family:arial; font-size:18px; " >
+    <div style="width:450px; border:0px solid #888; background-color:#fff; padding:5px; margin:5px; float:left; " >
+    <h2>Pivot Height Analysis by Senninger</h2>
+    </div>
+    
+    <div style="width:450px; border:1px solid #888; background-color:#eee; padding:5px; margin:5px; float:left; " >
+<div style="margin:5px;" > Address:<input style="margin-left: 5px; margin-right: 5px;  font-size:14px; padding:5px;" id="address" type="textbox" value="Pretoria"><input type="button" onclick="codeAddress()" value="Goto Address"></div>
+<div style="margin:5px;" > Radius: <input style="margin-left: 10px; margin-right: 5px;  font-size:14px; padding:5px;" id="radius" onchange="updatePivot()" type="textbox" value="100"><input type="button" onclick="updatePivot()" value="Update Radius"></div>
+
+</div>
+
+<div style="width:450px; border:0px solid #000; padding:5px; margin:5px; float:left; text-align:center; " >
+    <div >Highest point: <b style="color:red;" id="hpoint"></b></div>
+    <div >Lowest point: <b style="color:green;" id="lpoint"></b></div>
+</div>
+
+    <div style="width:450px; text-align:left; border:1px solid #888; background-color:#eee; padding:5px; margin:5px; float:left; " >
+    <b>Share with Senninger</b>
+  
+<div id='contact_form_errorloc' class='err'></div>
+<form method="POST" name="contact_form" 
+action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>"> 
+
+<div style="margin:5px;" > Name:<input style="margin-left: 5px; margin-right: 5px;  font-size:14px; padding:5px;" type="textbox" name="name" value='<?php echo htmlentities($name) ?>'></div>
+<div style="margin:5px;" > Email: <input style="margin-left: 3px; margin-right: 5px;  font-size:14px; padding:5px;"  type="textbox" name="email" value='<?php echo htmlentities($visitor_email) ?>'></div>
+<div style="margin:5px;" > Pivot Notes: <textarea rows="3" cols="49" style="margin-left: 0px; margin-right: 5px;  font-size:14px; padding:5px;" name="message" value=""><?php echo htmlentities($user_message) ?></textarea></div>
+
+<p>
+<img src="captcha_code_file.php?rand=<?php echo rand(); ?>" id='captchaimg' ><br>
+<label for='message'>Enter the code above here :</label><br>
+<input id="6_letters_code" name="6_letters_code" type="text"><br>
+<small>Can't read the image? click <a href='javascript: refreshCaptcha();'>here</a> to refresh</small>
+</p>
+<input type="button" value="Submit" name='submit'>
+</form>
+
+<script language="JavaScript">
+// Code for validating the form
+// Visit http://www.javascript-coder.com/html-form/javascript-form-validation.phtml
+// for details
+var frmvalidator  = new Validator("contact_form");
+//remove the following two lines if you like error message box popups
+frmvalidator.EnableOnPageErrorDisplaySingleBox();
+frmvalidator.EnableMsgsTogether();
+
+frmvalidator.addValidation("name","req","Please provide your name"); 
+frmvalidator.addValidation("email","req","Please provide your email"); 
+frmvalidator.addValidation("email","email","Please enter a valid email address"); 
+</script>
+<script language='JavaScript' type='text/javascript'>
+function refreshCaptcha()
+{
+	var img = document.images['captchaimg'];
+	img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
+}
+</script>
+
+
+    </div>
+
+</div>
+  </body>
+</html>
