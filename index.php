@@ -114,7 +114,8 @@
    <script language="JavaScript" type="text/javascript" src="main.js"></script>    
    <script language="JavaScript" src="scripts/gen_validatorv31.js" type="text/javascript"></script>	
    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCUYIZOucrwK5g72kEAlzLWB3ds5gls3jM&sensor=false"></script>
-   <script language="JavaScript" type="text/javascript" src="jquery.cookie.js"></script>
+  
+   <script language="JavaScript" type="text/javascript" src="jquery.cookie.js"></script> 
 
    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
    <style type="text/css">
@@ -177,14 +178,15 @@
                         <div style="width:350px; border:1px solid #888; background-color:#eee; padding:5px; margin:5px; float:left;  " >
 
                             Address:
-                            <input type="radio" name="adt" id="address_rb" onchange="updateAdt()" >
+                            <input type="radio" class="adt" name="arb" id="address_rb" onchange="updateAdt()" >
                             Lat/Lng: 
-                            <input type="radio" name="adt" id="location_rb"  checked onchange="updateAdt()">
+                            <input type="radio" class="adt" name="arb" id="location_rb"  checked onchange="updateAdt()">
                            <!-- Current: 
                             <input type="radio" name="adt" id="current_rb" onchange="updateAdt()"> -->
 
                             <input disabled style="margin-left: 5px; width:300px; margin-right: 5px;  font-size:14px; 
-                            padding:5px;" id="address" type="textbox" value=""><br/><span style="font-size:10px;">eg. (112 Ainslie St, 11211) or (51 57' 32.48",00 55' 55.23")
+                            padding:5px;" id="address_text" name="add_t" type="textbox" value="" /><br/>
+                            <span style="font-size:10px;">eg. (112 Ainslie St, 11211) or (51 57' 32.48",00 55' 55.23")
                             <br/>
                             <span style="display:nokne; font-size:14px;" >
                                 Lat:<input id="lat_address"  style=" margin-left: 5px; width:150px; margin-right: 5px;  font-size:14px; 

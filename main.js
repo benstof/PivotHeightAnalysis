@@ -188,8 +188,8 @@ function plotCenter(results, status){
 
      var marker = new google.maps.Marker({
       map: map,
-      draggable:false,
-      position: elHLoc,
+      draggable : false,
+      position : elHLoc,
       icon : image
     });
      temp_markersArray.push(marker);
@@ -198,8 +198,8 @@ function plotCenter(results, status){
 
      var marker = new google.maps.Marker({
       map: map,
-      draggable:false,
-      position: elLLoc,
+      draggable :false,
+      position : elLLoc,
       icon : image
     });
      temp_markersArray.push(marker);
@@ -280,29 +280,27 @@ function codeAddress() {
   elHigh = -100000;
   elLow = 100000;
 
-
-
-
-  adt = $("input[name=adt]:checked").attr('id');
+  //adt = $("input[name=adt]:checked").attr('id');
+  adt = $('input.adt:checked').attr('id');
 
 
 
 if(adt == 'address_rb' || adt == 'current_rb'){
 
 
-  address = document.getElementById('address').value;
+  address = document.getElementById('address_text').value;
 
 
 
   if (adt == 'current_rb') {
 
     address = current_addr; 
-    console.log('current'); 
+    //console.log('current'); 
 
   } 
 
 
-  console.log(address);
+  //console.log(address);
 
 
   geocoder.geocode( { 'address': address}, function(results, status) {
@@ -312,7 +310,7 @@ if(adt == 'address_rb' || adt == 'current_rb'){
       map.setCenter(results[0].geometry.location);
       glob_pos = results[0].geometry.location; 
 
-console.log('jjj');
+//console.log('jjj');
       updatePivot();
       
 
@@ -346,23 +344,27 @@ console.log('jjj');
 
 function updateAdt() {
 
-  adt = $("input[name=adt]:checked").attr('id');
+  //adt = $("input[name=adt]:checked").attr('id');
+  adt = $('input.adt:checked').attr('id');
 
   if(adt == 'address_rb'){
-   $("#address").prop('disabled', false);
+   $("#address_text").prop('disabled', false);
    $("#lng_address").prop('disabled', true);
    $("#lat_address").prop('disabled', true);
 
  }
 
  if(adt == 'location_rb'){
-   $("#address").prop('disabled', true);
+   $("#address_text").prop('disabled', true);
    $("#lng_address").prop('disabled', false);
    $("#lat_address").prop('disabled', false);
  }
 
+}
 
 
+
+/*
  if(adt == 'current_rb'){
 
 
@@ -402,6 +404,8 @@ function erroro(msg) {
 
 
 }
+*/
+
 
 function aggree_to_terms() {
 
@@ -414,8 +418,6 @@ function aggree_to_terms() {
 
 function initialize() {
 
-
-  //$('#disclaimer_box').hide();
 
   $("#aggree_btn").click(function() {
    aggree_to_terms();
@@ -448,8 +450,3 @@ this_lng = -81.6891067430725;
   codeAddress();
 
 }
-
-
-
-
-
