@@ -295,7 +295,7 @@ For accurate elevation data a physical survey must be done to verify the elevati
 
   frmvalidator.addValidation("name","req","Please provide your name"); 
   frmvalidator.addValidation("email","req","Please provide your email"); 
-  frmvalidator.addValidation("email","email","Please enter a valid email address"); 
+  frmvalidator.addValidation("email","email","Please enter a valid email address;;;;"); 
   </script>
   <script language='JavaScript' type='text/javascript'>
   function refreshCaptcha()

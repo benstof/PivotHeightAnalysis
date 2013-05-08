@@ -1,0 +1,147 @@
+.fr_cipuva {
+  left:0;
+  width:50%;
+  margin:.5em 29.42084942084942% 0 20.52123552123552%;
+  padding:1px 0 0 0;
+  position:relative;
+  min-height:25.0625em
+}
+.fr_cipuva:after {
+  content:".";
+  display:block;
+  clear:both;
+  visibility:hidden;
+  line-height:0;
+  height:0
+}
+.fr_hepabi {
+  width:auto;
+  margin:1em auto 0 auto;
+  min-height:200px
+}
+.fr_hepabi .fr-text {
+  min-width:100%
+}
+.fr_notenu {
+  margin:1em auto 0 auto;
+  min-height:200px
+}
+.fr_notenu>div {
+  float:left
+}
+.fr_naveta {
+  margin:1em auto 0 auto;
+  min-height:200px
+}
+.fr_naveta:after {
+  content:".";
+  display:block;
+  clear:both;
+  visibility:hidden;
+  line-height:0;
+  height:0
+}
+.fr_lituta {
+  margin:1em auto 0 auto;
+  min-height:200px
+}
+.fr_lituta:after {
+  content:".";
+  display:block;
+  clear:both;
+  visibility:hidden;
+  line-height:0;
+  height:0
+}
+.fr_cicasi {
+  width:49.96138996138996%;
+  margin:0 auto 0 20.616554054054056%;
+  min-height:4.9375em
+}
+.fr_hewuco {
+  left:10;
+  width:42.50386398763524%;
+  margin:.8125em 6.3369397217928904% 0 57.54926584234931%;
+  position:relative;
+  min-height:12.6875em
+}
+.fr_bisomi {
+  width:42.65842349304482%;
+  margin:.75em 17.052023121387283% 0 57.38504636785162%;
+  min-height:10.25em
+}
+.fr_bepobi {
+  float:left;
+  width:350px;
+  height:350px;
+  margin:.75em 48.66008462623413% 0 .844058533145275%;
+  min-height:23.75em
+}
+.fr_bowiku {
+  left:0;
+  width:49.96138996138996%;
+  margin:1em 28.957528957528957% 0 21.06177606177606%;
+  min-height:4.625em
+}
+.fr_rufiki {
+  width:50%;
+  margin:.9375em 28.957528957528957% 0 21.003861003861005%;
+  min-height:3.1875em
+}
+@media screen and (max-width:768px) {
+  .fr_hepabi {
+    width:99.86979166666667%;
+    font-family:ABeeZee;
+    font-weight:bold;
+    font-size:2.1em;
+    text-align:left;
+    margin:.7058823529411765em 62.76041666666667% 0 0;
+    min-height:1.2647058823529411em
+  }
+  .fr_hepabi .fr-text {
+    min-width:100%
+  }
+}
+@media screen and (max-width:768px) {
+  .fr_notenu {
+    display:none;
+    width:27.213541666666668%;
+    margin:-26.875em 72.78645833333334% 0 56.770833333333336%;
+    min-height:17em
+  }
+  .fr_notenu>div {
+    float:left
+  }
+}
+@media screen and (max-width:768px) {
+  .fr_naveta {
+    width:51.302083333333336%;
+    margin:.8125em 45.833333333333336% 0 0;
+    min-height:12.5em
+  }
+  .fr_naveta:after {
+    content:".";
+    display:block;
+    clear:both;
+    visibility:hidden;
+    line-height:0;
+    height:0
+  }
+}
+@media screen and (max-width:768px) {
+  .fr_lituta {
+    float:left;
+    width:48.046875%;
+    margin:.875em 0 0 51.953125%;
+    min-height:27.875em
+  }
+  .fr_lituta:after {
+    content:".";
+    display:block;
+    clear:both;
+    visibility:hidden;
+    line-height:0;
+    height:0
+  }
+}
+
