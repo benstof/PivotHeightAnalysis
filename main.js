@@ -14,6 +14,8 @@ var elLLoc;
 var temp_markersArray = [];
 var units = 'meters';
 
+
+
 function clearTempOverlays() {
 
  for (var i = 0; i < temp_markersArray.length; i++ ) {
@@ -44,6 +46,8 @@ function updatePivot() {
   clearOverlays();
 
 
+
+
   var image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
 
   var marker = new google.maps.Marker({
@@ -65,13 +69,12 @@ function updatePivot() {
 
   var rad = document.getElementById('radius').value;   
 
-      //console.log(units);
       if(units == 'feet'){
        rad = rad / 3.28;
      }
-      //console.log(rad);
       document.getElementById('rad_val').value = rad.toString();
-      
+
+
       var populationOptions = {
         strokeColor: "#FF0000",
         strokeOpacity: 0.8,
@@ -82,6 +85,7 @@ function updatePivot() {
         center: glob_pos, //results[0].geometry.location, //new google.maps.LatLng(-34.397, 150.644),
         radius: parseInt(rad)
       };
+
       document.getElementById('clocation').value = glob_pos.toString();
       pivot = new google.maps.Circle(populationOptions);
       markersArray.push(pivot);
@@ -89,7 +93,11 @@ function updatePivot() {
       var origin = pivot.center;
       //alert(origin.toString());
 
-      $('#coords').html('<br/>'+origin.toString());
+//alert(global_lat);
+//alert(global_lng);
+
+
+      $('#coords').html( Math.round(global_lat * 100) / 100 + ', ' + Math.round(global_lng * 100) / 100);
       
       for (var i = 0; i < 36; i++ ) {
 
@@ -120,6 +128,7 @@ function updatePivot() {
         'path': [origin,origin],
         'samples':5
       }
+
       elSvc.getElevationAlongPath(pathRequest, plotCenter);
 
   //pivotRadiusLine = new google.maps.Polyline(radiusLineSettings);   
@@ -146,6 +155,8 @@ function plotCenter(results, status){
      }
 
    }
+
+
 
 
    $("#cpoint").html(elevation);
@@ -207,6 +218,7 @@ function plotCenter(results, status){
 
      $("#hpoint").html(elHigh);
      $("#lpoint").html(elLow);
+
      document.getElementById('hpoint_val').value = elHigh.toString();
      document.getElementById('lpoint_val').value = elLow.toString();     
      
@@ -248,6 +260,7 @@ function updateUnits(){
  units = $("input[name=units]:checked").attr('id');
  document.getElementById('un_val').value = units;
 
+
  if(units == 'feet'){
   $(".units_lbl").html('ft');  
 } else {
@@ -258,8 +271,6 @@ updatePivot();
 }
 
 function codeAddress() {
-
-
 
   units = $("input[name=units]:checked").attr('id');
 
@@ -290,19 +301,6 @@ if(adt == 'address_rb' || adt == 'current_rb'){
 
   address = document.getElementById('address_text').value;
 
-
-
-  if (adt == 'current_rb') {
-
-    address = current_addr; 
-    //console.log('current'); 
-
-  } 
-
-
-  //console.log(address);
-
-
   geocoder.geocode( { 'address': address}, function(results, status) {
 
     if (status == google.maps.GeocoderStatus.OK) {
@@ -310,7 +308,9 @@ if(adt == 'address_rb' || adt == 'current_rb'){
       map.setCenter(results[0].geometry.location);
       glob_pos = results[0].geometry.location; 
 
-//console.log('jjj');
+      global_lat = results[0].geometry.location.lb;
+      global_lng = results[0].geometry.location.kb;
+
       updatePivot();
       
 
@@ -328,10 +328,16 @@ if(adt == 'address_rb' || adt == 'current_rb'){
   var lat_val = document.getElementById('lat_address').value;
   var lng_val = document.getElementById('lng_address').value;
 
+
+
+
   //address = '41.072683, -97.372842';
   ltlng = new google.maps.LatLng(lat_val, lng_val);
   glob_pos = ltlng;
-  
+      
+  global_lat = lat_val;
+  global_lng = lng_val;
+
   map.setCenter(ltlng);
 
   updatePivot();
@@ -347,17 +353,21 @@ function updateAdt() {
   //adt = $("input[name=adt]:checked").attr('id');
   adt = $('input.adt:checked').attr('id');
 
+
   if(adt == 'address_rb'){
-   $("#address_text").prop('disabled', false);
-   $("#lng_address").prop('disabled', true);
-   $("#lat_address").prop('disabled', true);
+
+   $("#address_label").show(); 
+   $("#lat_label").hide();
+   $("#lng_label").hide();
 
  }
 
  if(adt == 'location_rb'){
-   $("#address_text").prop('disabled', true);
-   $("#lng_address").prop('disabled', false);
-   $("#lat_address").prop('disabled', false);
+
+   $("#address_label").hide(); 
+   $("#lat_label").show();
+   $("#lng_label").show();
+
  }
 
 }
@@ -409,33 +419,96 @@ function erroro(msg) {
 
 function aggree_to_terms() {
 
-  $.cookie('disclaimer', 'y');
+  $.cookie('disclaimer', 'yebo');
 
   // Hide disclaimer
   $('#disclaimer_box').hide();
+  $('#light').fadeOut();
+  $('#fade').fadeOut();  
+}
 
+
+function form_submit(){
+
+
+  codeAddress();
+
+  return false;
+
+}
+
+function send_submit(){
+
+var str = $("#send_form").serialize();
+
+
+$.ajax({  
+  type: "POST",  
+  url: "submit.php",  
+  data: str,  
+  success: function (html) {   
+    
+
+    if (html == '') {
+      $('#send_form').hide();
+      $('#message').fadeIn(2500, function() {  
+        //$('#message').append("<img id='checkmark' src='images/check.png' />");  
+        $('#light').fadeOut();
+        $('#fade').fadeOut();
+        $('#message').hide();
+        
+      }); 
+
+    } else {
+      alert(html);
+    }
+
+  }  
+
+});  
+
+  return false;
 }
 
 function initialize() {
 
 
-  $("#aggree_btn").click(function() {
+$('.share_btn').live('click', function(){
+        $('#light').fadeIn();
+        $('#fade').fadeIn();  
+        $('#send_form').show();
+        $('.close_share_btn').show();
+});
+
+
+$('.close_share_btn').live('click', function(){
+        $('#light').fadeOut();
+        $('#fade').fadeOut(); 
+});
+
+
+$("#aggree_btn").click(function() {
    aggree_to_terms();
  });
 
 
-  var aggree = $.cookie('disclaimer');
-  if (aggree != 'y') {
+  var aggr = $.cookie('disclaimer');
+  if (aggr != 'yebo') {
     // Show disclaimer
-    $('#disclaimer_box').fadeIn();
-
+        $('#light').fadeIn();
+        $('#fade').fadeIn();  
+        $('#disclaimer_box').show();
+        $('#send_form').hide();
+        $('.close_share_btn').hide();
   }
-
 
 geocoder = new google.maps.Geocoder();
 
 this_lat = 28.542180934818862;
 this_lng = -81.6891067430725;
+
+  $("#lat_address").val(this_lat);
+  $("#lng_address").val(this_lng);
 
   var mapOptions = {
     center: new google.maps.LatLng(this_lat, this_lng),
