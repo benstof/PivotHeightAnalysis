@@ -54,29 +54,43 @@ color:#888888;
 #header {
   overflow:hidden;
   position: relative;
+  min-height: 200px;
+  height: 100%;
 }
-custom.css (line 15)
+
 #header {
   border-width:0 0 0.3em;
 }
-layout.css (line 305)
+
 #header {
   padding-bottom:2.2em;
 }
-layout.css (line 82)
+
 #header {
   clear:both;
   padding-bottom:44px !important;
 }
 
+.icon_image{
+  width:60px; height:60px; float:left;
+}
+
+.icon_div {
+margin-top:15px; width:200px; float:left;
+text-align: left;
+margin-left: 10px;
+}
+
 .icon_box{
-  width:130px; text-align:center; float:left; margin:25px 55px 0px 55px;
+  width:300px; 
+  text-align:center; 
+  float:left; margin:10px 5px 0px 0px;
 }
 
 .icon_header{
    font-family: 'Cabin', sans-serif;
-   font-size: 18px;
-   color:#bbb;
+   font-size: 14px;
+   color:#fff;
 }
 
 .icon_number{
@@ -97,9 +111,9 @@ layout.css (line 82)
    font-family: 'Cabin', sans-serif;
    font-size: 22px;
    color:#fff;
-   margin-top:50px;
+   margin-top:40px;
    float:left;
-   width: 300px;
+   width: 270px;
 }
 
 div.close_share_btn {
@@ -116,7 +130,7 @@ div.share_btn {
   cursor:pointer;
   width:256px; 
   height:49px; 
-  margin:99px 0px 0px 20px;
+  margin:40px 0 11px 10px;
   float: left;
 }
 
@@ -125,13 +139,15 @@ div.share_btn:hover {
   cursor:pointer;
   width:256px; 
   height:49px; 
-  margin:99px 0px 0px 20px;
+  margin:40px 0 11px 10px;
   float: left;
 }
 
 #go_location{
   height: 310px;
   float: left;
+  border-right: 1px dashed #167AB6;
+  width: 270px;
 }
 
 
@@ -149,13 +165,19 @@ div.share_btn:hover {
     filter: alpha(opacity=70);
 }
 
+.field_wrapper
+    {
+     clear:both;
+     width: 280px;
+    }
+
+
 #light{
     display: none;
     position: absolute;
-    top: 2%;
-    left: 20%;
-    width: 500px;
-    height: 500px;                
+    top: 15%;
+    left: 30%;
+    width: 500px;               
     padding: 10px;
     border: 10px solid #ccc;
     background: #fff;
@@ -197,7 +219,7 @@ div.box {
   background-repeat:initial initial;
   margin:0 auto;
   top:50px;
-  width:300px;
+  width:250px;
   float:left;
 }
 div.box h1 {
@@ -209,7 +231,7 @@ div.box label {
   background-position:initial initial;
   background-repeat:initial initial;
   display:block;
-  padding:10px 0;
+  padding:5px 0;
   width:100%;
 }
 div.box label span {
@@ -218,11 +240,11 @@ div.box label span {
   font-size:18px;
   padding:5px 20px 0 0;
   text-align:left;
-  width:75px;
+  width:65px;
 }
 div.box .input_text {
-  padding:10px;
-  width:150px;
+  padding:5px;
+  width:140px;
   color:#167AB6;
   font-size: 16px;
 }
@@ -247,6 +269,7 @@ div.box .input_submit {
     width: 64px;
     height: 34px;
     border: none;
+    padding: 10px;
 }
 
 div.box .input_submit:hover {

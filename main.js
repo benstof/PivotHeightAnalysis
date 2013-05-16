@@ -419,7 +419,7 @@ function erroro(msg) {
 
 function aggree_to_terms() {
 
-  $.cookie('disclaimer', 'yebo');
+  $.cookie('disclaimer', 'yebo1');
 
   // Hide disclaimer
   $('#disclaimer_box').hide();
@@ -493,7 +493,7 @@ $("#aggree_btn").click(function() {
 
 
   var aggr = $.cookie('disclaimer');
-  if (aggr != 'yebo') {
+  if (aggr != 'yebo1') {
     // Show disclaimer
         $('#light').fadeIn();
         $('#fade').fadeIn();  

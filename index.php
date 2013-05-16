@@ -23,22 +23,11 @@
   <body onload="initialize()">
 
 
-  	<div style="margin:auto; width: 880px; ">   <img src="senninger_logo.jpg" style="width:200px; margin-bottom:10px; float:left;" />  
-  		<h1 class="header_title">Pivot Height Analysis</h1></div>
-
-  		<div id="header_area" class="full_width">
-  			<div class="page">
-
-
-  				<div id="header">
-
-
-
 <div id="light">
 
-	<div class="close_share_btn" src="images/modal_close_bttn.png"> </div>
+  <div class="close_share_btn" src="images/modal_close_bttn.png"> </div>
 
-<div class="gform" style="margin-left:110px; margin-top:20px;">
+<div class="gform" style="margin-left:110px; margin-top:0px;">
 
   <div id='message'>
     <h2>Thank you for your submittion.</h2>
@@ -66,68 +55,68 @@
 
 <form id="send_form" style="color:#014e90;" onsubmit="return send_submit();">
 
-  							<div class="box">
+                <div class="box" style="width:300px;">
 
-  								<h1>Share with Senninger</h1>
+                  <h1>Share with Senninger</h1>
 
-  							
+                
 
-  								<label id="">
-  									<span>Name</span>
+                  <label id="">
+                    <span>Name</span>
 
-  									<input type="text" class="input_text" name="name" id="name"/>
+                    <input type="text" class="input_text" name="name" id="name"/>
 
-  								</label>		
+                  </label>    
 
-  								<label id="">
-  									<span>Email</span>
+                  <label id="">
+                    <span>Email</span>
 
-  									<input type="text" class="input_text" name="email" id="email"/>
+                    <input type="text" class="input_text" name="email" id="email"/>
 
-  								</label>	
+                  </label>  
 
-  								<label id="" style="d">
-  									<span>Pivot Notes</span>
+                  <label id="" style="d">
+                    <span>Pivot Notes</span>
 
-  									 <textarea rows="3" cols="17" style="color:#167AB6; margin-left: 0px; margin-right: 5px; font-size:14px; padding:5px; width:162px; border:1px solid #ccc;" name="message" value=""></textarea>
+                     <textarea rows="3" cols="17" style="color:#167AB6; margin-left: 0px; margin-right: 5px; font-size:14px; padding:5px; width:162px; border:1px solid #ccc;" name="message" value=""></textarea>
 
-  								</label>	
+                  </label>  
 
-  								<label id="" style="padding:0px;">
-  									<span></span>
-									<img src="captcha_code_file.php?rand=<?php echo rand(); ?>" id='captchaimg' > 
-  								</label>	
+                  <label id="" style="padding:0px;">
+                    <span></span>
+                  <img src="captcha_code_file.php?rand=<?php echo rand(); ?>" id='captchaimg' > 
+                  </label>  
 
-  								<label id="" style="padding:0px;font-size:16px;">
-  									<span></span>
-									Enter the code above here: <br/> 
-									
-  								</label>	
+                  <label id="" style="padding:0px;font-size:16px;">
+                    <span></span>
+                  Enter the code above here: <br/> 
+                  
+                  </label>  
 
-  								<label id="" style="padding:0px;">
-  									<span></span>
-									<input id="6_letters_code" class="input_text" name="6_letters_code" type="text" />
-									
-								</label>	
+                  <label id="" style="padding:0px;">
+                    <span></span>
+                  <input id="6_letters_code" class="input_text" name="6_letters_code" type="text" />
+                  
+                </label>  
 
-  								<label id="" style="font-size:11px;">
-  									<span></span>
-									<small>Can't read the image? click <a href='javascript: refreshCaptcha();'>here</a> to refresh</small>
-									
-								</label>	
+                  <label id="" style="font-size:11px;">
+                    <span></span>
+                  <small>Can't read the image? click <a href='javascript: refreshCaptcha();'>here</a> to refresh</small>
+                  
+                </label>  
 
       
 
 
-  								<label style="text-align:right; width:90%;">
-  									<span></span>
-  									<input type="submit" class="send_submit" value=""   />
-  								</label>	
+                  <label style="text-align:right; width:70%;">
+                    <span></span>
+                    <input type="submit" class="send_submit" value=""   />
+                  </label>  
 
-  							</div>
+                </div>
 
 
-		      <input type="hidden" name="hpoint" id="hpoint_val" value="0" />
+          <input type="hidden" name="hpoint" id="hpoint_val" value="0" />
           <input type="hidden" name="lpoint" id="lpoint_val" value="0"  />
           <input type="hidden" name="cpoint" id="cpoint_val" value="0"  />
           <input type="hidden" name="clocation" id="clocation" value="0"  />
@@ -135,18 +124,37 @@
           <input type="hidden" name="radius_val" id="rad_val" value="100"  />
           <input type="hidden"  id="ip_val" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>"  />
 
-  						</form>
-
-  					</div>
-
-
-
+              </form>
 
 </div>
+
+</div>
+
+
 <div id="fade" onClick="lightbox_close();"></div> 
 
 
-  					<div style="width:450px; height:450px; margin:50px;  float:left; border:5px #fff solid;">
+
+
+
+
+  	<div style="float:left;
+  margin:50px 0 20px;
+  width:100%; ">   <img src="senninger_logo.jpg" style="width:200px; margin-bottom:10px; margin-left:200px; float:left;" />  
+  		<h1 class="header_title">Pivot Height Analysis</h1></div>
+
+  		<div id="header_area" class="full_width">
+  			<div class="page">
+
+
+  				<div id="header">
+
+
+
+
+
+
+  					<div style="width:370px; height:370px; margin:50px 20px 0px 0px;  float:left; border:5px #fff solid;">
   						<div id="map_canvas" style="border:1px solid #888; position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
   					</div>
 
@@ -160,19 +168,21 @@
 
   								<h1>Place your pivot</h1>
 
+                  <div class="field_wrapper">
   								<label style="width:50%; float:left;">
   									<span>Address:</span>
 
-  									<input type="radio" name="adtt" class="adt" id="address_rb"  onchange="updateAdt()" />
+  									<input type="radio" name="adtt" class="adt" id="address_rb"  onclick="updateAdt()" />
 
   								</label>
 
-  								<label>
+  								<label  style="width:50%; float:left;">
   									<span>Lat/Lng:</span>
 
-  									<input type="radio" name="adtt" class="adt"  id="location_rb"  checked onchange="updateAdt()" />
+  									<input type="radio" name="adtt" class="adt"  id="location_rb"  checked onclick="updateAdt()" />
 
   								</label>
+                </div>
 
   								<label id="lat_label">
   									<span>Lat *</span>
@@ -202,7 +212,7 @@
 
   								</label>
 
-  								<label>
+  								<label  style="width:20%; float:left;">
 
   									<input type="submit" class="input_submit" value=""   />
   								</label>	
@@ -210,14 +220,14 @@
   								<label  style="width:50%; float:left;">
   									<span>Feet:</span>
 
-  									<input name="units" id="feet" type="radio" onchange="updateUnits()" />
+  									<input name="units" id="feet" type="radio" onclick="updateUnits()" />
 
   								</label>
 
-  								<label>
+  								<label  style="width:50%; float:left;">
   									<span>Meters:</span>
 
-  									<input name="units" id="meters" type="radio" checked onchange="updateUnits()" />
+  									<input name="units" id="meters" type="radio" checked onclick="updateUnits()" />
 
   								</label>
 
@@ -228,10 +238,58 @@
   						</form>
 
 
-  						<div class="share_btn" src="images/share_btn.png"> </div>
+  						
 
   					</div>
 
+
+
+
+      <div style="width:270px; margin-left:30px; margin-top:20px; float:left;">
+
+        <div class="icon_box">  
+          <img class="icon_image" src="images/highest.png" /> 
+          <div class="icon_div">
+          <span class="icon_header">Highest Point: </span>
+      
+          <b class="icon_number" id="hpoint" style="color:#ce3234;" >0.0</b><span style="color:#ce3234;" class="units_lbl icon_number" style="margin-left:2px;"></span>
+          </div>
+        </div>
+
+        <div class="icon_box">  
+          <img class="icon_image" src="images/center.png" /> 
+          <div class="icon_div">
+          <span class="icon_header">Center Point: </span>
+    
+          <b class="icon_number" id="cpoint">0.0</b><span class="units_lbl icon_number" style="margin-left:2px;"></span>
+        </div>
+        </div>
+
+        <div class="icon_box" >  
+          <img class="icon_image" src="images/lowest.png" /> 
+          <div class="icon_div">
+          <span class="icon_header">Lowest Point: </span>
+         
+          <b class="icon_number" style="color:#4db849;"  id="lpoint">0.0</b><span style="color:#4db849;" class="units_lbl icon_number" style="margin-left:2px;"></span>
+          </div>
+        </div>
+
+        <div class="icon_box">  
+          <img class="icon_image" src="images/calc.png" /> 
+          <div class="icon_div">
+          <span class="icon_header">Coords:</span>
+
+          <b class="icon_number" id="coords">(23.9898, 34.0998</b>
+          </div>
+        </div>
+
+
+        <div class="share_btn" src="images/share_btn.png"> </div>
+
+      </div>
+
+
+        <div style="position:relative;"> </div>
 
   				</div>
 
@@ -239,40 +297,7 @@
 
   		</div>
 
-  		<div style="width:96em; margin:auto;">
 
-  			<div class="icon_box">  
-  				<img style="width:130px;" src="images/highestc.png" /> 
-  				<span class="icon_header">Highest Point:</span>
-  				<br/>
-  				<b class="icon_number" id="hpoint" style="color:#ce3234;" >0.0</b><span style="color:#ce3234;" class="units_lbl icon_number" style="margin-left:2px;"></span>
-  			</div>
-
-  			<div class="icon_box">  
-  				<img style="width:130px;" src="images/center.png" /> 
-  				<span class="icon_header">Center Point:</span>
-  				<br/>
-  				<b class="icon_number" id="cpoint">0.0</b><span class="units_lbl icon_number" style="margin-left:2px;"></span>
-  			</div>
-
-  			<div class="icon_box" >  
-  				<img style="width:130px;" src="images/lowestc.png" /> 
-  				<span class="icon_header">Lowest Point:</span>
-  				<br/>
-  				<b class="icon_number" style="color:#4db849;"  id="lpoint">0.0</b><span style="color:#4db849;" class="units_lbl icon_number" style="margin-left:2px;"></span>
-  			</div>
-
-  			<div class="icon_box">  
-  				<img style="width:130px;" src="images/calc.png" /> 
-  				<span class="icon_header">Coordinates:</span>
-
-  				<b class="icon_number" id="coords">(23.9898, 34.0998</b>
-  			</div>
-
-
-
-
-  		</div>
 
 
   	</body>
