@@ -36,18 +36,18 @@
 
 <div id="disclaimer_box" style="display:none;">
 
-                <h2>This link distributed through Senninger irrigation is to be used as a tool to help with collecting elevation 
+                <h3>This link distributed through Senninger irrigation is to be used as a tool to help with collecting elevation 
                 data through Google Earth. Senninger Irrigation is not responsible or is liable for any data collected 
                 from this site and bears no responsibility.
-                </h2>
-                <h2>
+                </h3>
+                <h3>
                   OTHER THAN AS EXPRESSLY SET OUT IN THESE TERMS OR ADDITIONAL TERMS, NEITHER GOOGLE NOR 
                   ITS SUPPLIERS OR DISTRIBUTORS MAKE ANY SPECIFIC PROMISES ABOUT THE SERVICES. FOR EXAMPLE, 
                   WE DON'T MAKE ANY COMMITMENTS ABOUT THE CONTENT WITHIN THE SERVICES, THE SPECIFIC 
                   FUNCTION OF THE SERVICES, OR THEIR RELIABILITY, AVAILABILITY, OR ABILITY TO MEET YOUR NEEDS. 
                   WE PROVIDE THE SERVICES 'AS IS'.
                   For accurate elevation data a physical survey must be done to verify the elevation differences.
-                </h2>
+                </h3>
 
                 <div id="aggree_btn"> <b style="font-size:20px; color:#fff; margin:auto auto;" >Agree</b></div>
 </div>
@@ -135,10 +135,7 @@
 
 
 
-
-
-
-  	<div style="float:left;
+<div style="float:left;
   margin:50px 0 20px;
   width:100%; ">   <img src="senninger_logo.jpg" style="width:200px; margin-bottom:10px; margin-left:200px; float:left;" />  
   		<h1 class="header_title">Pivot Height Analysis</h1></div>
@@ -162,7 +159,7 @@
   					<div class="gform">
 
 
-  						<form id="go_location" onsubmit="return form_submit();">
+  						<form id="go_location" onsubmit="return false;">
 
   							<div class="box">
 
@@ -205,7 +202,14 @@
 
   								</label>	
 
-  								<label  style="width:70%; float:left;">
+
+                  <label  style="">
+<span></span>
+                    <input type="submit" class="input_submit" value=""  onclick="form_submit()"  />
+                  </label>  
+
+
+  								<label  style="width:62%; float:left;">
   									<span>Radius *</span>
 
   									<input style="width:50px;" type="text" class="input_text" name="name" id="radius" value="100"/>
@@ -214,7 +218,7 @@
 
   								<label  style="width:20%; float:left;">
 
-  									<input type="submit" class="input_submit" value=""   />
+  									<input type="submit" class="input_update" value="" onclick="updatePivot()"   />
   								</label>	
 
   								<label  style="width:50%; float:left;">

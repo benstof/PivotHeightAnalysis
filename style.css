@@ -263,21 +263,50 @@ div.box .button {
   width:100px;
 }
 
-div.box .input_submit {
-    background:url(images/go_bttn.png) no-repeat;
+div.box .input_update {
+    background:url(images/update.png) no-repeat;
     cursor:pointer;
-    width: 64px;
-    height: 34px;
+    width: 80px;
+    height: 32px;
     border: none;
     padding: 10px;
 }
 
-div.box .input_submit:hover {
-    background:url(images/go_bttn_active.png) no-repeat;
+
+
+div.box .input_update:hover {
+    background:url(images/update_active.png) no-repeat;
     cursor:pointer;
-    width: 64px;
+    width: 80px;
+    height: 32px;
+    border: none;
+    padding: 10px;
+}
+
+
+
+
+
+div.box .input_submit {
+    background:url(images/go.png) no-repeat;
+    cursor:pointer;
+    width: 140px;
     height: 34px;
     border: none;
+    padding: 10px;
+    margin-left: 9px;
+}
+
+
+
+
+div.box .input_submit:hover {
+    background:url(images/go_active.png) no-repeat;
+    cursor:pointer;
+    width: 140px;
+    height: 34px;
+    border: none;
+    margin-left: 9px;
 }
 
 div.box .send_submit {

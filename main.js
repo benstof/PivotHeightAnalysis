@@ -47,6 +47,8 @@ function updatePivot() {
 
 
 
+console.log('j');
+
 
   var image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
 
@@ -136,6 +138,8 @@ function updatePivot() {
 
 
 }
+
+return false;
 
 }
 
@@ -419,7 +423,7 @@ function erroro(msg) {
 
 function aggree_to_terms() {
 
-  $.cookie('disclaimer', 'yebo1');
+  $.cookie('disclaimer', 'yebo2');
 
   // Hide disclaimer
   $('#disclaimer_box').hide();
@@ -493,7 +497,7 @@ $("#aggree_btn").click(function() {
 
 
   var aggr = $.cookie('disclaimer');
-  if (aggr != 'yebo1') {
+  if (aggr != 'yebo2') {
     // Show disclaimer
         $('#light').fadeIn();
         $('#fade').fadeIn();  
