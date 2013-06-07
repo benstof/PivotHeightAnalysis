@@ -46,10 +46,6 @@ function updatePivot() {
   clearOverlays();
 
 
-
-console.log('j');
-
-
   var image = "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png";
 
   var marker = new google.maps.Marker({
@@ -106,7 +102,7 @@ console.log('j');
 
         var endpoint = google.maps.geometry.spherical.computeOffset(pivot.center,pivot.radius,i*10);
         path.push(endpoint);
-      //console.log(endpoint);
+
       
       var samplesize = rad / 5;
       //alert(samplesize);
@@ -148,7 +144,6 @@ return false;
 
 function plotCenter(results, status){
 
-  	//console.log('kjk');
   	if(status == google.maps.ElevationStatus.OK){
 
   		elevations = results;
@@ -180,8 +175,7 @@ function plotCenter(results, status){
       if(units == 'feet'){
         elevations[i].elevation = elevations[i].elevation * 3.28;
       }
-  		    //console.log(elevations[i].elevation);
-  		    
+      
   		    if(elevations[i].elevation > elHigh) {
            elHigh = elevations[i].elevation.toFixed(1);
            elHLoc = elevations[i].location;
