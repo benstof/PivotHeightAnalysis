@@ -242,6 +242,16 @@ div.box label span {
   text-align:left;
   width:65px;
 }
+
+div.send label span {
+  display:block;
+  float:left;
+  font-size:18px;
+  padding:5px 20px 0 0;
+  text-align:left;
+  width:95px;
+}
+
 div.box .input_text {
   padding:5px;
   width:140px;
@@ -282,6 +292,29 @@ div.box .input_update:hover {
     border: none;
     padding: 10px;
 }
+
+
+
+
+div.box .blank {
+    background:url(images/blank.png) no-repeat;
+    cursor:pointer;
+    width: 70px;
+    height: 34px;
+    border: none;
+    padding: 10px;
+    margin-left: 9px;
+}
+
+div.box .blank:hover {
+    background:url(images/blank_active.png) no-repeat;
+    cursor:pointer;
+    width: 70px;
+    height: 34px;
+    border: none;
+    margin-left: 9px;
+}
+
 
 
 

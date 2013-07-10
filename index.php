@@ -53,23 +53,80 @@
 </div>
 
 
-<form id="send_form" style="color:#014e90;" onsubmit="return send_submit();">
 
-                <div class="box" style="width:300px;">
+              <form id="convert_form" style="display:none;  color:#014e90;" onsubmit="return send_convert();">
+
+                <div class="box send" style="width:340px;">
+
+                  <h1>Convert from Degree, Minute, Second</h1>
+
+                  <h2>Latitude</h2>
+                  <label id="">
+                    <span>Degrees</span>
+<input name="dlat" type="INT" size="4" value="28" maxlength="4" id="dlat" style="font-size: 12pt;color:#000; padding: 2px; " tabindex="1" />
+
+                  </label>  
+
+                  <label id="">
+                    <span>Minutes</span>           
+<input name="mlat" type="INT" size="4" value="32" maxlength="2" id="mlat" style="font-size: 12pt;color:#000; padding: 2px; " tabindex="2" />
+
+                  </label>  
+
+                  <label id="">
+                    <span>Seconds</span>
+<input name="slat" type="INT" size="6" value="31.85" maxlength="6" id="slat" style="font-size: 12pt;color:#000; padding: 2px; " tabindex="3" />
+
+                  </label>  
+
+
+
+
+                  <h2>Longitude</h2>
+                  <label id="">
+                    <span>Degrees</span>
+<input name="dlon" type="INT" size="4" value="-81" maxlength="4" id="dlon" style="font-size: 12pt;color:#000; padding: 2px; " tabindex="1" />
+
+                  </label>  
+
+                  <label id="">
+                    <span>Minutes</span>           
+<input name="mlon" type="INT" size="4" value="41" maxlength="2" id="mlon" style="font-size: 12pt;color:#000; padding: 2px; " tabindex="2" />
+
+                  </label>  
+
+                  <label id="">
+                    <span>Seconds</span>
+<input name="slon" type="INT" size="6" value="20.78" maxlength="6" id="slon" style="font-size: 12pt;color:#000; padding: 2px; " tabindex="3" />
+
+                  </label>  
+
+                  <label style="text-align:right; width:70%;">
+                    <span></span>
+                    <input type="submit" class="blank" value="Convert"   />
+                  </label>  
+
+                </div>
+              </form>
+
+
+<form id="send_form" style="display:none; color:#014e90;" onsubmit="return send_submit();">
+
+                <div class="box send" style="width:340px;">
 
                   <h1>Share with Senninger</h1>
 
                 
 
                   <label id="">
-                    <span>Name</span>
+                    <span>Your Name</span>
 
                     <input type="text" class="input_text" name="name" id="name"/>
 
                   </label>    
 
                   <label id="">
-                    <span>Email</span>
+                    <span>Your Email</span>
 
                     <input type="text" class="input_text" name="email" id="email"/>
 
@@ -202,6 +259,10 @@
 
   								</label>	
 
+<label  style="">
+<span></span>
+                    <input type="submit" class="blank" value="Convert"  onclick="show_convert()"  />
+                  </label>  
 
                   <label  style="">
 <span></span>
